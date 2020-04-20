@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "state-management"
+    }
+  },
+  "defaultProject": "state-management",
+  "cli": {
+    "defaultCollection": "@ngxs/schematics"
+  }
 }
