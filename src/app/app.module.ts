@@ -4,10 +4,18 @@ import { BrowserModule } from "@angular/platform-browser";
 import { CourseModule } from "./course/course.module";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
+import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
+import { environment } from "src/environments/environment";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, CourseModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    CourseModule,
+    !environment.production ? NgxsReduxDevtoolsPluginModule.forRoot() : []
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

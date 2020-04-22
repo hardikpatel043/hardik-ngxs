@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 
 import { Course } from "./../../model/course.model";
-import { CourseService } from "./../../services/course.service";
+import { LoadCourses } from "../../state/courses.actions";
 import { Observable } from "rxjs";
+import { Store } from "@ngxs/store";
 
 @Component({
   selector: "app-courses-list",
@@ -15,9 +16,12 @@ export class CoursesListComponent implements OnInit {
 
   isUpdateActivated = false;
 
-  constructor(private courseService: CourseService) {}
+  constructor(private store: Store) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(new LoadCourses());
+    this.courses$ = this.store.select(state => state.courses.collection);
+  }
 
   deleteCourse(courseId: string) {}
 
